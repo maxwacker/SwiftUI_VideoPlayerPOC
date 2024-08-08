@@ -11,7 +11,8 @@ import SwiftUI
 struct VideoFullScreenOnLandscapePOCApp: App {
     var body: some Scene {
         WindowGroup {
-            OrientationTest()
+            MainTabView()
+            //OrientedVideoPlayer()
         }
     }
 }

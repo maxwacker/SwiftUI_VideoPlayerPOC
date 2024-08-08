@@ -28,7 +28,7 @@ extension View {
   }
 }
 
-struct OrientationTest: View {
+struct OrientedVideoPlayer: View {
   @State private var orientation = UIDevice.current.orientation
     let url = URL(
         string: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -54,6 +54,6 @@ struct OrientationTest: View {
 }
 
 #Preview {
-    OrientationTest()
+    OrientedVideoPlayer()
         .previewInterfaceOrientation(.landscapeLeft)
 }
