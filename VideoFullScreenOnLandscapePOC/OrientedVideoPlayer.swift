@@ -43,8 +43,9 @@ struct OrientedVideoPlayer: View {
             videoPlayer
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
-                .background(.green)
+                //.background(.green)
                 .edgesIgnoringSafeArea(.all)
+                .toolbar(.hidden, for: .tabBar)
         } else {
             videoPlayer
       }
