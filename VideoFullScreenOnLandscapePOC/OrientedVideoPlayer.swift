@@ -28,15 +28,34 @@ extension View {
   }
 }
 
+
+import AVKit
+import SwiftUI
+
+struct PlayerViewController: UIViewControllerRepresentable {
+    let avPlayer: AVPlayer
+    internal init(videoURL: URL) {
+        self.avPlayer = AVPlayer(url: videoURL)
+    }
+    
+    func makeUIViewController(context: Context) -> AVPlayerViewController {
+        let controller = AVPlayerViewController()
+        //controller.modalPresentationStyle = .fullScreen
+        controller.player = avPlayer
+        //controller.player?.play()
+        
+        return controller
+    }
+
+    func updateUIViewController(_ playerController: AVPlayerViewController, context: Context) {}
+}
+
+
 struct OrientedVideoPlayer: View {
   @State private var orientation = UIDevice.current.orientation
-    let url = URL(
+    let videoPlayerController = PlayerViewController(videoURL: URL(
         string: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    )!
-
-    let videoPlayer = VideoPlayer(player: AVPlayer(url: URL(
-        string: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-    )!))
+    )!)
   var body: some View {
     Group {
         if orientation.isLandscape {
@@ -52,7 +71,13 @@ struct OrientedVideoPlayer: View {
     }
     .detectOrientation($orientation)
   }
+    @ViewBuilder
+    var videoPlayer: some View {
+        self.videoPlayerController
+    }
+
 }
+
 
 #Preview {
     OrientedVideoPlayer()
